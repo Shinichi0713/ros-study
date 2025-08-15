@@ -84,6 +84,10 @@ Following these steps should help you resolve the issue.
 ```
 
 ```
+
+
+
+
 Resolving the "docker: unrecognized service" Error
 
 shell - docker: unrecognized service - Stack Overflow
@@ -133,6 +137,15 @@ This command starts the Docker daemon manually in WSL
 
 By following these steps, you can resolve the docker: unrecognized service error and successfully start the Docker service.
 ```
+
+## インストール
+
+
+![1755247098960](image/2-struct-env/1755247098960.png)
+
+
+
+
 
 ### reference
 
