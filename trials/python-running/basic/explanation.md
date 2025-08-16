@@ -50,6 +50,66 @@ listener: publishされたデータを受け取って、表示。さらに受け
 
 ![1755301610778](image/explanation/1755301610778.png)
 
+① **talker.py**
+
+```python
+rospy.init_node('talker')
+word = rospy.get_param("~content", "default")
+pub = rospy.Publisher('chatter', String, queue_size=10)
+
+```
+
+- ノード初期化：talker
+- パラメータ取得：contentからメッセージ取得
+- publisher作成：/chatterトピックにstringメッセージ送信する
+
+```python
+r = rospy.Rate(1) # 1Hz
+while not rospy.is_shutdown():
+    str = "send: %s" % word
+    rospy.loginfo(str)
+    pub.publish(str)
+    r.sleep()
+
+```
+
+* 1秒に1回、文字列を `/chatter` に送信
+* Ctrl+Cで終了するまで送信し続ける
+
+②litener.py
+
+基本的にずっと聞き続けるノード。
+
+chatterトピックを購読して、届いたらcallbackを実行
+
+```python
+rospy.init_node('listener')
+rospy.Subscriber("chatter", String, callback)
+rospy.spin()
+```
+
+
+* **ノード初期化** : 名前は `"listener"`
+* **Subscriber作成** : `/chatter` トピックを購読して、届いたら `callback` を実行
+* **spin()** : 無限ループに入り、コールバック待機
+
+```python
+def callback(data):
+    rospy.loginfo("recieved %s", data.data)
+    now = rospy.Time.now()
+    rospy.loginfo("now: %f", now.to_sec())
+```
+
+- 受信メッセージをログ出力
+- メッセージの時刻を取得してログ出力
+
+
+1. 使う場合はまずノードを定義
+2. メッセージを送るときはpublisher/subscriberを定義
+3. トピックは2を定義した際に自動的に定義される
+
+
+
 ## エラー
 
 Unable to locate package ros-noetic-desktop-full
