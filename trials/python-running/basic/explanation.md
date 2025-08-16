@@ -2,7 +2,6 @@
 
 rosのpythonスクリプトをlinux中で動作させる手順を理解する
 
-
 ## 実行権限の付与
 
 pythonはスクリプト言語なのでこれ自体はビルドは必要ありません。ただpythonファイルを実行するためには実行権限を付ける必要があります。
@@ -15,7 +14,6 @@ chmod +x python_listener.py
 
 ![1755299927611](image/explanation/1755299927611.png)
 
-
 # 実行
 
 各ターミナルごとに実行前に `source ~/catkin_ws/devel/setup.bash`を実行する必要があります。
@@ -25,7 +23,6 @@ chmod +x python_listener.py
 ```shell
 roscore
 ```
-
 
 **2つ目のターミナル**
 
@@ -39,22 +36,23 @@ rosrun py_lecture python_talker.py _content:=data
 rosrun py_lecture python_listener.py
 ```
 
-
 ```shell
 catkin_ws/src/ros_lecture/py_lecture/scripts
 ```
 
+## 結果：動作しました
 
-結果：動作しました
+talker: send: dataという文字列データをpublish
+
+listener: publishされたデータを受け取って、表示。さらに受け取った日時を表示
+
+3つめのpython_timerの動作が謎・・・
 
 ![1755301610778](image/explanation/1755301610778.png)
-
 
 ## エラー
 
 Unable to locate package ros-noetic-desktop-full
-
-
 
 When you encounter the error message "unable to locate package ros-noetic-desktop-full" while trying to install ROS Noetic, it indicates that the package is not available in your system's package repository.
 
